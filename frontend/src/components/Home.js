@@ -1,32 +1,25 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Featured from './Featured';
 
 const Home = () =>  {
-  const [blogs, setBlogs] = useState([]);
-  
 
-  // API Call to our own DB to retrieve the remaining Articles
+  const [blogs, setBlogs] = useState([]);
+
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}api/blog/`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blog/`);
         console.log(res.data);
         setBlogs(res.data);
       }
-      catch (err) {
-
+      catch(err){
+        console.log(err)
       }
     }
-    fetchBlogs();
+    fetchData();
   }, [])
-
-  const capitalizeFirstLetter = (word) => {
-    if (word)
-        return word.charAt(0).toUpperCase() + word.slice(1);
-    return '';
-};
 
   const getBlogs = () => {
     let list = [];
@@ -34,45 +27,62 @@ const Home = () =>  {
     
     blogs.map(blogPost => {
         return list.push(
-            <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div className="col p-4 d-flex flex-column position-static">
-                    <strong className="d-inline-block mb-2 text-primary">{capitalizeFirstLetter(blogPost.category)}</strong>
-                    <h3 className="mb-0">{blogPost.title}</h3>
-                    <div className="mb-1 text-muted">{blogPost.month} {blogPost.day}</div>
-                    <p className="card-text mb-auto">{blogPost.excerpt}</p>
-                    <Link to={`/${blogPost.slug}`} className="stretched-link">Continue reading</Link>
+            <div 
+              className="">
+                <div className="py-6 px-3 h-full flex flex-col">
+                  <Link to={`/${blogPost.slug}`} className="stretched-link">
+                    <img className='rounded-sm hover:opacity-95' src={blogPost.thumbnail} alt='thumbnail' />
+                  </Link>
                 </div>
-                <div className="col-auto d-none d-lg-block">
-                    <img width='200' height='250' src={blogPost.thumbnail} alt='thumbnail' />
-                </div>
+
+                <div className="mt-3 mx-2 flex flex-col justify-between flex-1">
+                  <header>
+                    <div className="hover:underline text-sm uppercase">   {blogPost.category}
+                    </div>
+
+                    <div className='mt-2'>
+                      <h1 className="text-4xl clamp one-line">{blogPost.title}</h1>
+                      <span className="mt-2 block text-gray-600 text-sm">{blogPost.month} {blogPost.day}</span>
+                    </div>
+                  </header>
+
+                  <div className="text-md mt-4 space-y-4">
+                      {blogPost.excerpt}
+                  </div>
+
+                  <footer className='flex mt-8'>
+                    <div>
+                      <Link to={`/${blogPost.slug}`} className="transition-colors duration-300 text-xs font-semibold bg-blue-500 hover:bg-blue-400 text-white rounded-full py-2 px-4">Read More</Link>
+                    </div>
+                  </footer>
+                    
+                </div> 
             </div>
         );
     });
 
-    for (let i = 0; i < list.length; i += 2) {
+
+    for (let i = 1; i < list.length; i += 2) {
         result.push(
-            <div key={i} className='row mb-2'>
-                <div className='col-md-6'>
-                    {list[i]}
+            <div key={i} className='lg:grid lg:grid-cols-6'>
+                <div className='col-span-3'>
+                  {list[i]}
                 </div>
-                <div className='col-md-6'>
-                    {list[i+1] ? list[i+1] : null}
+                <div className='col-span-3'>
+                  {list[i+1] ? list[i+1] : null}
                 </div>
             </div>
         )
     }
-
+    console.log(result)
     return result;
 };
 
   return (
-
-    <main class="max-w-6xl mx-auto mt-6 lg:mt-10 space-y-6">
-      <Featured/>
-
-      
-      {getBlogs()}
-    </main>
+    <div class="max-w-6xl mx-auto mt-6 lg:mt-10 space-y-6">
+    <Featured/>
+    {getBlogs()}
+  </div>
   );
 };
 

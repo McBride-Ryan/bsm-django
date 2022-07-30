@@ -9,7 +9,7 @@ export default function Featured() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${process.env.REACT_APP_API_URL}api/blog/featured`);
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blog/`);
                 setFeaturedBlog(res.data[0]);
             }
             catch (err) {

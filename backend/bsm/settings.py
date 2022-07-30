@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'bsm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'python',
+        'NAME': 'bsmedia',
         'USER': 'root',
         'PASSWORD': 'secret',
         'HOST': '127.0.0.1',
