@@ -35,7 +35,7 @@ const Home = () =>  {
                   </Link>
                 </div>
 
-                <div className="mt-3 mx-2 flex flex-col justify-between flex-1">
+                <div className="mt-3 px-3 flex flex-col justify-between flex-1">
                   <header>
                     <div className="hover:underline text-sm uppercase">   {blogPost.category}
                     </div>
