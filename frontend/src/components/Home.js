@@ -29,7 +29,7 @@ const Home = () =>  {
         return list.push(
             <div 
               className="">
-                <div className="py-6 px-3 h-full flex flex-col">
+                <div className="py-6 md:px-2 h-full flex flex-col">
                   <Link to={`/${blogPost.slug}`} className="stretched-link">
                     <img className='rounded-sm hover:opacity-95' src={blogPost.thumbnail} alt='thumbnail' />
                   </Link>

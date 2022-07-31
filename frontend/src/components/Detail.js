@@ -89,7 +89,7 @@ export default function Detail() {
                             </path>
                         </g>
                     </svg>
-                    Back to Posts
+                    Back to Articles
                 </a>
             </div>
         </article>

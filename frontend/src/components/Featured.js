@@ -22,14 +22,14 @@ export default function Featured() {
 
   return (
     <article className="">
-    <div className="py-6 px-3 lg:flex">
+    <div className="py-6 md:px-2 lg:flex">
         <div className="flex-1 lg:mr-8">
           <Link to={`/${featuredBlog.slug}`}>
                 <img src={featuredBlog.thumbnail} alt="Blog Post illustration" className="rounded-sm hover:opacity-95 "/>
           </Link> 
         </div>
 
-        <div className="flex-1 flex flex-col justify-between">
+        <div className="flex-1 flex flex-col justify-between px-3 md:px-0">
             <header className="mt-3 lg:mt-0">
                 <div className="space-x-1 hover:underline text-sm uppercase">
                     CAT BUTTON
