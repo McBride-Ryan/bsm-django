@@ -6,10 +6,6 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 from api.models import NewsPost
 from api.serializers import NewsPostSerializer
 
-@api_view(['GET'])
-def getRoutes(request):
-    routes = ['Routes']
-    return Response(routes)
 
 class NewsPostListView(ListAPIView):
     queryset = NewsPost.objects.order_by('-date_created')
